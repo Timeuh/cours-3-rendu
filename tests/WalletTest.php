@@ -57,11 +57,18 @@ class WalletTest extends TestCase
         $wallet = new Wallet('GBP');
     }
 
-    public function testInvalidRemoveFunds(): void
+    public function testInsufficientRemoveFunds(): void
     {
         $this->expectException(\Exception::class);
         $wallet = new Wallet('USD');
         $wallet->removeFund(50.0);
+    }
+
+    public function testNegativeRemoveFunds(): void
+    {
+        $this->expectException(\Exception::class);
+        $wallet = new Wallet('USD');
+        $wallet->removeFund(-50.0);
     }
 
     public function testInvalidAddFunds(): void
