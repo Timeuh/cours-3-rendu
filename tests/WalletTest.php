@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class WalletTest extends TestCase
 {
-    //Test constructeur
+    // Test du constructeur pour initialiser le portefeuille
     public function testWalletInitialization(): void
     {
         $wallet = new Wallet('USD');
@@ -15,7 +15,7 @@ class WalletTest extends TestCase
         $this->assertEquals('USD', $wallet->getCurrency());
     }
 
-    //Test fonction AddFunds
+    // Test de la fonction AddFunds pour ajouter des fonds au portefeuille
     public function testAddFunds(): void
     {
         $wallet = new Wallet('USD');
@@ -23,7 +23,7 @@ class WalletTest extends TestCase
         $this->assertEquals(100.0, $wallet->getBalance());
     }
 
-    //Test fonction RemoveFunds
+    // Test de la fonction RemoveFunds pour retirer des fonds du portefeuille
     public function testRemoveFunds(): void
     {
         $wallet = new Wallet('USD');
@@ -33,7 +33,7 @@ class WalletTest extends TestCase
         $this->assertSame(50.0, $wallet->getBalance());
     }
 
-    //Test fonction setBalance
+    // Test de la fonction setBalance pour définir le solde du portefeuille
     public function testSetBalance(): void
     {
         $wallet = new Wallet('USD');
@@ -41,7 +41,7 @@ class WalletTest extends TestCase
         $this->assertEquals(50.0, $wallet->getBalance());
     }
 
-    //Test fonction setCurrency
+    // Test de la fonction setCurrency pour définir la devise du portefeuille
     public function testSetCurrency(): void
     {
         $wallet = new Wallet('USD');
@@ -49,7 +49,7 @@ class WalletTest extends TestCase
         $this->assertEquals('EUR', $wallet->getCurrency());
     }
 
-    //Test fonction exception setBalance
+    // Test d'exception pour la fonction setBalance en cas de solde invalide
     public function testInvalidBalance(): void
     {
         $this->expectException(\Exception::class);
@@ -58,7 +58,7 @@ class WalletTest extends TestCase
         $wallet->setBalance(-50.0);
     }
 
-    //Test fonction exception setCurrency
+    // Test d'exception pour la fonction setCurrency en cas de devise invalide
     public function testInvalidCurrency(): void
     {
         $this->expectException(\Exception::class);
@@ -66,7 +66,7 @@ class WalletTest extends TestCase
         $wallet = new Wallet('GBP');
     }
 
-    //Test fonction exception RemoveFunds
+    // Test d'exception pour la fonction RemoveFunds en cas de montant invalide
     public function testInsufficientRemoveFunds(): void
     {
         $this->expectException(\Exception::class);
@@ -75,7 +75,7 @@ class WalletTest extends TestCase
         $wallet->removeFund(-50.0);
     }
 
-    //Test fonction exception RemoveFunds
+    // Test d'exception pour la fonction RemoveFunds en cas de fonds insuffisants
     public function testNegativeRemoveFunds(): void
     {
         $this->expectException(\Exception::class);
@@ -84,7 +84,7 @@ class WalletTest extends TestCase
         $wallet->removeFund(50.0);
     }
 
-    //Test fonction exception AddFunds
+    // Test d'exception pour la fonction AddFunds en cas de montant invalide
     public function testInvalidAddFunds(): void
     {
         $this->expectException(\Exception::class);
